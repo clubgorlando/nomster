@@ -5,6 +5,15 @@
   <br /><br />
   <p><%= @place.description %></p>
 
+  <% @place.photos.each do |photo| %>
+  <p>
+    <% if photo.picture.url.present? %>
+      <%= image_tag photo.picture.url, class: 'img-fluid' %>
+    <% end %>
+    <%= photo.caption %>
+  </p>
+<% end %>
+
   <% if @place.latitude.present? && @place.longitude.present? %>
 
     <script>
@@ -127,11 +136,3 @@
 
 <div class="clear"></div>
 
-<% @place.photos.each do |photo| %>
-  <p>
-    <% if photo.picture.url.present? %>
-      <%= image_tag photo.picture.url, class: 'img-fluid' %>
-    <% end %>
-    <%= photo.caption %>
-  </p>
-<% end %>
